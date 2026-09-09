@@ -546,20 +546,20 @@
     wrap.appendChild(label);
     galleryGrid.appendChild(wrap);
 
-    tryLoadImage(img, `images/${i}`, 0, ()=> wrap.remove());
+    tryLoadImage(img, `${i}`, 0, ()=> wrap.remove());
     img.onload = ()=>{ wrap.style.display = ''; };
     wrap.addEventListener('click', ()=>openLightbox(img.src));
   }
 
-  // Özel vitrin fotoğrafları: birkaç olası dosya adını dener (ilk_date / ilk-date / ilkdate vb.)
+  // Özel vitrin fotoğrafları: birkaç olası dosya adını dener
   function tryLoadNamed(imgEl, basePaths, extIndex, pathIndex){
     if(pathIndex >= basePaths.length) return;
     if(extIndex >= EXTENSIONS.length){ tryLoadNamed(imgEl, basePaths, 0, pathIndex+1); return; }
     imgEl.onerror = ()=> tryLoadNamed(imgEl, basePaths, extIndex+1, pathIndex);
-    imgEl.src = `images/${basePaths[pathIndex]}.${EXTENSIONS[extIndex]}`;
+    imgEl.src = `${basePaths[pathIndex]}.${EXTENSIONS[extIndex]}`;
   }
-  tryLoadNamed(document.getElementById('img-ilk-date'), ['ilk_date','ilk-date','ilkdate','ilk_buluşma','ilkbulusma'], 0, 0);
-  tryLoadNamed(document.getElementById('img-son-gun'), ['son_gun','son-gun','songun','son_an','sonan'], 0, 0);
+  tryLoadNamed(document.getElementById('img-ilk-date'), ['İlk date','ilk date','Ilk date','ilk_date','ilk-date','ilkdate'], 0, 0);
+  tryLoadNamed(document.getElementById('img-son-gun'), ['son gün','son gun','son_gun','son-gun','songun'], 0, 0);
 
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
