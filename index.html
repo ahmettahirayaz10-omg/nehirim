@@ -536,10 +536,8 @@
     const wrap = document.createElement('div');
     wrap.className = 'polaroid';
     wrap.style.setProperty('--tilt', (Math.random()*6-3).toFixed(2)+'deg');
-    wrap.style.display = 'none'; // yüklenene kadar gizli
     const img = document.createElement('img');
     img.alt = `Anı ${i}`;
-    img.loading = 'lazy';
     const label = document.createElement('span');
     label.textContent = `#${i}`;
     wrap.appendChild(img);
@@ -547,7 +545,6 @@
     galleryGrid.appendChild(wrap);
 
     tryLoadImage(img, `${i}`, 0, ()=> wrap.remove());
-    img.onload = ()=>{ wrap.style.display = ''; };
     wrap.addEventListener('click', ()=>openLightbox(img.src));
   }
 
